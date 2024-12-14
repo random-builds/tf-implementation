@@ -1,0 +1,38 @@
+terraform:
+  version: "~> 1.10.0"
+
+aws:
+  enabled: false
+  source: hashicorp/aws
+  version: "~> 5.81.0"
+
+vault:
+  enabled: false
+  source: hashicorp/vault
+  version: "~> 4.2.0"
+  skip_tls_verify: false
+
+authentik:
+  enabled: false
+  source: goauthentik/authentik
+  version: "~> 2024.10.0"
+
+github:
+  enabled: false
+  source: integrations/github
+  version: "~> 6.3.0"
+
+random:
+  enabled: false
+  source: hashicorp/random
+  version: "~> 3.6.0"
+
+gitea:
+  enabled: false
+  source: go-gitea/gitea
+  version: "~> 0.3.0"
+
+minio:
+  enabled: false
+  source: aminueza/minio
+  version: "~> 2.0.1"

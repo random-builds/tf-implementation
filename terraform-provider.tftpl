@@ -1,0 +1,96 @@
+terraform {
+  required_version = "${terraform.version}"
+  required_providers {
+
+  %{~ if vault.enabled ~}
+    vault = {
+      source  = "${vault.source}"
+      version = "${vault.version}"
+    }
+  %{~ endif ~}
+
+  %{~ if random.enabled ~}
+    random = {
+      source  = "${random.source}"
+      version = "${random.version}"
+    }
+  %{~ endif ~}
+
+  %{~ if authentik.enabled ~}
+    authentik = {
+      source  = "${authentik.source}"
+      version = "${authentik.version}"
+    }
+  %{~ endif ~}
+
+  %{~ if github.enabled ~}
+    github = {
+      source  = "${github.source}"
+      version = "${github.version}"
+    }
+  %{~ endif ~}
+
+  %{~ if aws.enabled ~}
+    aws = {
+      source  = "${aws.source}"
+      version = "${aws.version}"
+    }
+  %{~ endif ~}
+
+  %{~ if gitea.enabled ~}
+    gitea = {
+      source  = "${gitea.source}"
+      version = "${gitea.version}"
+    }
+  %{~ endif ~}
+
+  %{~ if minio.enabled ~}
+    minio = {
+      source  = "${minio.source}"
+      version = "${minio.version}"
+    }
+  %{~ endif ~}
+  }
+}
+
+%{~ if vault.enabled ~}
+provider "vault" {
+  skip_tls_verify = ${vault.skip_tls_verify}
+}
+%{~ endif }
+
+%{~ if authentik.enabled ~}
+provider "authentik" {}
+%{~ endif}
+
+%{~ if aws.enabled ~}
+provider "aws" {
+  region  = "${aws.region}"
+  default_tags {
+    tags = ${aws.default_tags}
+  }
+}
+
+%{~ for key, value in lookup(aws, "aliases", {}) }
+provider "aws" {
+  alias   = "${key}"
+  region  = "${value.region}"
+  default_tags {
+    tags = ${value.default_tags}
+  }
+}
+%{~ endfor }
+
+%{~ endif }
+
+%{~ if random.enabled ~}
+provider "random" {}
+%{~ endif }
+
+%{~ if gitea.enabled ~}
+provider "gitea" {}
+%{~ endif }
+
+%{~ if minio.enabled ~}
+provider "minio" {}
+%{~ endif }
