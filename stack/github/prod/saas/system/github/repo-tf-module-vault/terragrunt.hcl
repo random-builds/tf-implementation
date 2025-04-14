@@ -7,7 +7,7 @@ terraform {
 }
 
 inputs = {
-  name = "tf-module-github"
+  name = "tf-module-vault"
   visibility = "public"
   team_collaborators = {
     admin = ["admin"]

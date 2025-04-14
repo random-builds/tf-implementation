@@ -7,7 +7,7 @@ terraform {
 }
 
 inputs = {
-  name = "tf-module-github"
+  name = "k8s-base"
   visibility = "public"
   team_collaborators = {
     admin = ["admin"]
