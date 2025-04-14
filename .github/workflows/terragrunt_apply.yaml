@@ -12,9 +12,10 @@ jobs:
       contents: read
       id-token: write
       pull-requests: write
-    uses: random-builds/gh-workflows/.github/workflows/terraform.yaml@7e4b834e835bc2b849fa1acbf49e1d61fa3410e7
+    uses: random-builds/gh-workflows/.github/workflows/terragrunt.yaml@2809faa310394e61a71ec23df7b460b7f3140207
     secrets: inherit
     with:
-      file_type: 'terragrunt'
       enable_static_checks: false
       apply: true
+      terragrunt_version: 0.77.14
+      terraform_version: 1.11.4
