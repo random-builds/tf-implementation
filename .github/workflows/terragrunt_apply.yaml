@@ -1,0 +1,20 @@
+name: Terragrunt Apply
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - stack/**
+
+jobs:
+  build:
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+    uses: random-builds/gh-workflows/.github/workflows/terraform.yaml@7e4b834e835bc2b849fa1acbf49e1d61fa3410e7
+    secrets: inherit
+    with:
+      file_type: 'terragrunt'
+      enable_static_checks: false
+      apply: true
