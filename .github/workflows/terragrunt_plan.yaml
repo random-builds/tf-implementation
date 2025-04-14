@@ -1,0 +1,19 @@
+name: Terragrunt Plan
+on:
+  pull_request:
+    paths:
+      - stack/**
+
+jobs:
+  build:
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+    uses: random-builds/gh-workflows/.github/workflows/terragrunt.yaml@2809faa310394e61a71ec23df7b460b7f3140207
+    secrets: inherit
+    with:
+      enable_static_checks: true
+      plan: true
+      terragrunt_version: 0.77.14
+      terraform_version: 1.11.4
