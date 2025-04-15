@@ -6,10 +6,19 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     outputs:
-      this: ${{ steps.hm.outputs }}
+      this: ${{ steps.hm.outputs.secret }}
     steps:
       - run: |
-          echo ${{ secrets.TF_VAR_APP_ID }} >> $GITHUB_OUTPUT
+          secret='secret={'
+          secret+='"TF_VAR_APP_ID": "${{ secrets.TF_VAR_APP_ID }}",'
+          secret+='"TF_VAR_INSTALLATION_ID": "${{ secrets.TF_VAR_INSTALLATION_ID }}",'
+          secret+='"TF_VAR_APP_PEM_FILE": "${{ secrets.TF_VAR_APP_PEM_FILE }}",'
+          secret+='"TF_VAR_GITHUB_ORGANIZATION": "${{ secrets.TF_VAR_GITHUB_ORGANIZATION }}",'
+          secret+='"TF_VAR_KEYCLOAK_CLIENT_ID": "${{ secrets.TF_VAR_KEYCLOAK_CLIENT_ID }}",'
+          secret+='"TF_VAR_KEYCLOAK_CLIENT_SECRET": "${{ secrets.TF_VAR_KEYCLOAK_CLIENT_SECRET }}",'
+          secret+='"TF_VAR_KEYCLOAK_URL": "${{ secrets.TF_VAR_KEYCLOAK_URL }}",'
+          secret+='}'
+          echo $secret >> $GITHUB_OUTPUT
         id: hm
 
   this:
