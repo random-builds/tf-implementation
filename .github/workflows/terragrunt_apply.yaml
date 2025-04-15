@@ -4,7 +4,8 @@ on:
     branches:
       - main
     paths:
-      - stack/**
+      - "stack/**"
+      - "!stack/onprem/**"
 
 jobs:
   build:
@@ -19,4 +20,3 @@ jobs:
       apply: true
       terragrunt_version: 0.77.14
       terraform_version: 1.11.4
-      runs_on: tfonly
