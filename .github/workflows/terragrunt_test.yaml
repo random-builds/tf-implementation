@@ -6,7 +6,7 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     outputs:
-      this:
+      this: ${{ steps.hm.outputs }}
     steps:
       - run: |
           echo ${{ secrets.TF_VAR_APP_ID }} >> $GITHUB_OUTPUT
