@@ -1,4 +1,4 @@
-name: Terragrunt Apply
+name: Terragrunt Test
 on:
   workflow_dispatch:
 
