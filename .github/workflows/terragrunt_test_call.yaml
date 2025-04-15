@@ -1,0 +1,20 @@
+name: Terragrunt Test
+on:
+  workflow_call:
+    secrets:
+      two:
+    inputs:
+      one:
+        type: string
+        default: "test"
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo $one | wc
+          echo $two | wc
+        env:
+          one: ${{ inputs.one }}
+          two: ${{ secrets.two }}
