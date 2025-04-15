@@ -12,10 +12,21 @@ jobs:
       contents: read
       id-token: write
       pull-requests: write
-    uses: random-builds/gh-workflows/.github/workflows/terragrunt.yaml@2809faa310394e61a71ec23df7b460b7f3140207
+    uses: random-builds/gh-workflows/.github/workflows/terragrunt.yaml@99d598a27842c6a2bfa64fa51104f6f97da0c90e
     secrets: inherit
     with:
       enable_static_checks: false
       apply: true
       terragrunt_version: 0.77.14
       terraform_version: 1.11.4
+      terragrunt_secrets: |
+        {
+          "TF_VAR_GITHUB_ORGANIZATION": "${{ github.repository_owner }}",
+          "TF_VAR_APP_ID": "${{ secrets.TF_VAR_APP_ID }}",
+          "TF_VAR_APP_INSTALLATION_ID": "${{ secrets.TF_VAR_APP_INSTALLATION_ID }}",
+          "TF_VAR_APP_PEM_FILE": "${{ secrets.TF_VAR_APP_PEM_FILE }}",
+          "GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
+          "TF_VAR_KEYCLOAK_CLIENT_ID": ${{ secrets.TF_VAR_KEYCLOAK_CLIENT_ID }}
+          "TF_VAR_KEYCLOAK_CLIENT_SECRET": ${{ secrets.TF_VAR_KEYCLOAK_CLIENT_SECRET }}
+          "TF_VAR_KEYCLOAK_URL": ${{ secrets.TF_VAR_KEYCLOAK_URL }}
+        }
