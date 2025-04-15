@@ -12,13 +12,14 @@ jobs:
       contents: read
       id-token: write
       pull-requests: write
-    uses: random-builds/gh-workflows/.github/workflows/terragrunt.yaml@99d598a27842c6a2bfa64fa51104f6f97da0c90e
+    uses: random-builds/gh-workflows/.github/workflows/terragrunt.yaml@103f755dc7d0283ea90616718995d422b744feee
     secrets: inherit
     with:
       enable_static_checks: false
       apply: true
       terragrunt_version: 0.77.14
       terraform_version: 1.11.4
+      runs_on: tfonly
       terragrunt_secrets: |
         {
           "TF_VAR_GITHUB_ORGANIZATION": "${{ github.repository_owner }}",
