@@ -5,26 +5,19 @@ on:
 jobs:
   echo:
     runs-on: ubuntu-latest
-    outputs:
-      this: ${{ steps.hm.outputs.secret }}
     steps:
       - run: |
-          secret='secret={'
-          secret+='"TF_VAR_APP_ID": "${{ secrets.TF_VAR_APP_ID }}",'
-          secret+='"TF_VAR_INSTALLATION_ID": "${{ secrets.TF_VAR_INSTALLATION_ID }}",'
-          secret+='"TF_VAR_APP_PEM_FILE": "${{ secrets.TF_VAR_APP_PEM_FILE }}",'
-          secret+='"TF_VAR_GITHUB_ORGANIZATION": "${{ secrets.TF_VAR_GITHUB_ORGANIZATION }}",'
-          secret+='"TF_VAR_KEYCLOAK_CLIENT_ID": "${{ secrets.TF_VAR_KEYCLOAK_CLIENT_ID }}",'
-          secret+='"TF_VAR_KEYCLOAK_CLIENT_SECRET": "${{ secrets.TF_VAR_KEYCLOAK_CLIENT_SECRET }}",'
-          secret+='"TF_VAR_KEYCLOAK_URL": "${{ secrets.TF_VAR_KEYCLOAK_URL }}",'
-          secret+='}'
           echo $secret | wc
-          echo $secret >> $GITHUB_OUTPUT
         id: hm
-
-  this:
-    needs: echo
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo ${{ needs.echo.outputs.this }} | wc
+        env:
+          secret: |
+            {
+              "TF_VAR_GITHUB_ORGANIZATION": "${{ github.repository_owner }}",
+              "TF_VAR_APP_ID": "${{ secrets.TF_VAR_APP_ID }}",
+              "TF_VAR_APP_INSTALLATION_ID": "${{ secrets.TF_VAR_APP_INSTALLATION_ID }}",
+              "TF_VAR_APP_PEM_FILE": "${{ secrets.TF_VAR_APP_PEM_FILE }}",
+              "GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
+              "TF_VAR_KEYCLOAK_CLIENT_ID": ${{ secrets.TF_VAR_KEYCLOAK_CLIENT_ID }}
+              "TF_VAR_KEYCLOAK_CLIENT_SECRET": ${{ secrets.TF_VAR_KEYCLOAK_CLIENT_SECRET }}
+              "TF_VAR_KEYCLOAK_URL": ${{ secrets.TF_VAR_KEYCLOAK_URL }}
+            }
