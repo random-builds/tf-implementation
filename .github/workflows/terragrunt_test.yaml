@@ -1,0 +1,20 @@
+name: Terragrunt Apply
+on:
+  workflow_dispatch:
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    outputs:
+      this:
+    steps:
+      - run: |
+          echo ${{ secrets.TF_VAR_APP_ID }} >> $GITHUB_OUTPUT
+        id: hm
+
+  this:
+    needs: echo
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo ${{ toJSON(needs.echo.outputs.this) }}
