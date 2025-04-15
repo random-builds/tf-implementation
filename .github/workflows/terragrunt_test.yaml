@@ -18,6 +18,7 @@ jobs:
           secret+='"TF_VAR_KEYCLOAK_CLIENT_SECRET": "${{ secrets.TF_VAR_KEYCLOAK_CLIENT_SECRET }}",'
           secret+='"TF_VAR_KEYCLOAK_URL": "${{ secrets.TF_VAR_KEYCLOAK_URL }}",'
           secret+='}'
+          echo $secret | wc
           echo $secret >> $GITHUB_OUTPUT
         id: hm
 
@@ -26,4 +27,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo ${{ toJSON(needs.echo.outputs.this.secret) }}
+          echo ${{ needs.echo.outputs.this }} | wc
