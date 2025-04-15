@@ -12,7 +12,7 @@ jobs:
       contents: read
       id-token: write
       pull-requests: write
-    uses: random-builds/gh-workflows/.github/workflows/terragrunt.yaml@b69d039053394bd757111a3395ba8ba19a37db59
+    uses: random-builds/gh-workflows/.github/workflows/terragrunt.yaml@bc7095b1ac44c87a7af59c160885fa3410fa8138
     secrets: inherit
     with:
       enable_static_checks: false
