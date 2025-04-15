@@ -6,6 +6,19 @@ on:
     paths:
       - stack/**
 
+env:
+  secrets: |
+    {
+      "TF_VAR_GITHUB_ORGANIZATION": "${{ github.repository_owner }}",
+      "TF_VAR_APP_ID": "${{ secrets.TF_VAR_APP_ID }}",
+      "TF_VAR_APP_INSTALLATION_ID": "${{ secrets.TF_VAR_APP_INSTALLATION_ID }}",
+      "TF_VAR_APP_PEM_FILE": "${{ secrets.TF_VAR_APP_PEM_FILE }}",
+      "GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
+      "TF_VAR_KEYCLOAK_CLIENT_ID": ${{ secrets.TF_VAR_KEYCLOAK_CLIENT_ID }}
+      "TF_VAR_KEYCLOAK_CLIENT_SECRET": ${{ secrets.TF_VAR_KEYCLOAK_CLIENT_SECRET }}
+      "TF_VAR_KEYCLOAK_URL": ${{ secrets.TF_VAR_KEYCLOAK_URL }}
+    }
+
 jobs:
   build:
     permissions:
@@ -20,14 +33,4 @@ jobs:
       terragrunt_version: 0.77.14
       terraform_version: 1.11.4
       runs_on: tfonly
-      terragrunt_secrets: |
-        {
-          "TF_VAR_GITHUB_ORGANIZATION": "${{ github.repository_owner }}",
-          "TF_VAR_APP_ID": "${{ secrets.TF_VAR_APP_ID }}",
-          "TF_VAR_APP_INSTALLATION_ID": "${{ secrets.TF_VAR_APP_INSTALLATION_ID }}",
-          "TF_VAR_APP_PEM_FILE": "${{ secrets.TF_VAR_APP_PEM_FILE }}",
-          "GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
-          "TF_VAR_KEYCLOAK_CLIENT_ID": ${{ secrets.TF_VAR_KEYCLOAK_CLIENT_ID }}
-          "TF_VAR_KEYCLOAK_CLIENT_SECRET": ${{ secrets.TF_VAR_KEYCLOAK_CLIENT_SECRET }}
-          "TF_VAR_KEYCLOAK_URL": ${{ secrets.TF_VAR_KEYCLOAK_URL }}
-        }
+      terragrunt_secrets: ${{ env.secrets }}
