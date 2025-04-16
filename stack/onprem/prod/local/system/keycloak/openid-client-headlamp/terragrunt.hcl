@@ -8,7 +8,7 @@ terraform {
 
 inputs = {
   realm_name = "onprem"
-  client_name = "kubernetes"
-  client_id = "kubernetes"
+  client_name = "headlamp"
+  client_id = "headlamp"
   valid_redirect_uris = [""]
 }

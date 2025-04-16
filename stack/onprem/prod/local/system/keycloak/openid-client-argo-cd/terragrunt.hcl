@@ -8,7 +8,11 @@ terraform {
 
 inputs = {
   realm_name = "onprem"
-  client_name = "kubernetes"
-  client_id = "kubernetes"
-  valid_redirect_uris = [""]
+  client_name = "argo-cd"
+  client_id = "argo-cd"
+  valid_redirect_uris = [
+    "https://argo-cd.trial.studio/auth/callback",
+    "https://argo-cd.trial.studio/api/dex/callback",
+    "http://localhost:8085/auth/callback"
+  ]
 }

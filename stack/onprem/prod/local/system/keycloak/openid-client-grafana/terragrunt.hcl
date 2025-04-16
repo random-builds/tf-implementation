@@ -8,7 +8,7 @@ terraform {
 
 inputs = {
   realm_name = "onprem"
-  client_name = "kubernetes"
-  client_id = "kubernetes"
-  valid_redirect_uris = [""]
+  client_name = "grafana"
+  client_id = "grafana"
+  valid_redirect_uris = ["https://grafana.trial.studio/login/generic_oauth"]
 }

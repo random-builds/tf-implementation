@@ -8,7 +8,7 @@ terraform {
 
 inputs = {
   realm_name = "onprem"
-  client_name = "kubernetes"
-  client_id = "kubernetes"
-  valid_redirect_uris = [""]
+  client_name = "vault"
+  client_id = "vault"
+  valid_redirect_uris = ["https://vault.trial.studio/ui/vault/auth/oidc/oidc/callback"]
 }
