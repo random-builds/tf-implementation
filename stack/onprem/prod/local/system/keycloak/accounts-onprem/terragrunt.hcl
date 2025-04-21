@@ -28,14 +28,17 @@ inputs = {
     techtrials-github-admin = {
       first_name = "admin"
       last_name  = "admin"
+      email = "admin@admin.com"
     }
     techtrials-github-user1 = {
       first_name = "user1"
       last_name  = "user1"
+      email = "user1@user1.com"
     }
     techtrials-github-user2 = {
       first_name = "user2"
       last_name  = "user2"
+      email = "user2@user2.com"
     }
   }
 
