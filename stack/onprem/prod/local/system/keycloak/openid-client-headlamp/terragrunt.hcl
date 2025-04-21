@@ -10,5 +10,8 @@ inputs = {
   realm_name = "onprem"
   client_name = "headlamp"
   client_id = "headlamp"
-  valid_redirect_uris = [""]
+  valid_redirect_uris = [
+    "http://localhost:4466/oidc-callback",
+    "https://headlamp.trial.studio/oidc-callback"
+  ]
 }

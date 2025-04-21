@@ -10,5 +10,6 @@ inputs = {
   realm_name = "onprem"
   client_name = "kubernetes"
   client_id = "kubernetes"
-  valid_redirect_uris = [""]
+  # kubectl oidc-login
+  valid_redirect_uris = ["http://localhost:8000"]
 }
