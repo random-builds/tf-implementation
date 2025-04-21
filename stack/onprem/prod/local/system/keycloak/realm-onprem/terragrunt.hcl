@@ -3,7 +3,7 @@ include "backend" {
 }
 
 terraform {
-  source = "github.com/random-builds/tf-module-keycloak.git//realm?ref=35b56b0639ef5680fa69f93832b7107ea10a7b6f"
+  source = "github.com/random-builds/tf-module-keycloak.git//realm?ref=a3d652b9151aa76e5c7db7e2390222f55bdea739"
 }
 
 inputs = {

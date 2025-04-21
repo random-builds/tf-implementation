@@ -3,7 +3,7 @@ include "backend" {
 }
 
 terraform {
-  source = "github.com/random-builds/tf-module-keycloak.git//openid-client?ref=8ceaef8639165bad2b390876cec4c5afddde2c7f"
+  source = "github.com/random-builds/tf-module-keycloak.git//openid-client?ref=a3d652b9151aa76e5c7db7e2390222f55bdea739"
 }
 
 inputs = {
@@ -15,4 +15,8 @@ inputs = {
     "https://argo-cd.trial.studio/api/dex/callback",
     "http://localhost:8085/auth/callback"
   ]
+}
+
+dependencies {
+  paths = ["../realm-onprem"]
 }

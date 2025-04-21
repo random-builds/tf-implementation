@@ -3,7 +3,7 @@ include "backend" {
 }
 
 terraform {
-  source = "github.com/random-builds/tf-module-keycloak.git//accounts?ref=47de9694fc4f5df54f75887fc9a4bd014ba32443"
+  source = "github.com/random-builds/tf-module-keycloak.git//accounts?ref=a3d652b9151aa76e5c7db7e2390222f55bdea739"
 }
 
 inputs = {
@@ -42,4 +42,8 @@ inputs = {
     }
   }
 
+}
+
+dependencies {
+  paths = ["../realm-onprem"]
 }
